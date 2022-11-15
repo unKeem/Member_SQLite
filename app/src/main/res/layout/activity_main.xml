@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:text="로그인"
         android:layout_marginBottom="6dp"
-        android:onClick="viewOnClick"/>
+        android:onClick="viewOnClicked"/>
 
     <Button
         android:id="@+id/btn_signUp"
@@ -51,13 +51,13 @@
         android:layout_height="wrap_content"
         android:text="회원가입"
         android:layout_marginBottom="6dp"
-        android:onClick="viewOnClick"/>
+        android:onClick="viewOnClicked"/>
 
     <Button
         android:id="@+id/btn_displayMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="메인화면"
-        android:onClick="viewOnClick"/>
+        android:onClick="viewOnClicked"/>
 
 </LinearLayout>

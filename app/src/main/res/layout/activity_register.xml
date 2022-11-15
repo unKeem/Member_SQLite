@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:ems="10"
+        android:ems="20"
         android:hint="전화번호"
         android:inputType="textPersonName" />
 
@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:ems="10"
+        android:ems="20"
         android:hint="E_MAIL"
         android:inputType="textPersonName" />
 
@@ -92,7 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:ems="10"
+        android:ems="20"
         android:hint="주소"
         android:inputType="textPersonName" />
 

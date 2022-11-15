@@ -1,10 +1,9 @@
 package com.example.member_sqlite
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.member_sqlite.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -25,9 +24,18 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, DeleteActivity::class.java)
                 startActivity(intent)
             }
-            R.id.btn_list_member ->{}
-            R.id.btn_update_memberInfo ->{}
-            R.id.btn_back_loginActivity ->{}
+            R.id.btn_list_member ->{
+                val intent = Intent(this, ListActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.btn_update_memberInfo ->{
+                val intent = Intent(this, UpdateActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.btn_back_loginActivity ->{
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
             R.id.btn_delete_table ->{}
         }
     }

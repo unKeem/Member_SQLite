@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    fun viewOnClick(view: View?) {
+    fun viewOnClicked(view: View?) {
         when (view?.id) {
             R.id.btn_login -> {
                 //데이터베이스를 생성해서 SQLdatabase connection 가져온다
