@@ -41,27 +41,19 @@ class DBHelper(
 
     // 삽입 쿼리 함수 생성(RegisterActivity에서 reg버튼 눌러서 아이디 중복이나 패스워드 체크 하고 불러짐)
     fun insert(
-        name: String,
-        id: String,
-        password: String,
-        phone: String,
-        email: String,
-        address: String,
-        level: String
+        member: Member
     ): Boolean {
         val db: SQLiteDatabase = writableDatabase
         var flag = false
         try {
-            db.execSQL("insert into memberTBL values('${name}','${id}','${password}','${phone}','${email}','${address}','${level}')")
+            db.execSQL("insert into memberTBL values('${member.name}','${member.id}','${member.password}','${member.phone}','${member.email}','${member.address}','${member.level}')")
             flag = true
         } catch (e: SQLException) {
-            Log.d("member_sqlite", " ${id} ${name} insert실패")
+            Log.d("member_sqlite", " ${member.id} ${member.name} insert실패")
             flag = false
-        }finally {
-            db.close()
         }
-        Toast.makeText(context, "${id} 회원등록 성공", Toast.LENGTH_SHORT).show()
-        Log.d("member_sqlite", " ${id} ${name} insert성공")
+        Toast.makeText(context, "${member.id} 회원등록 성공", Toast.LENGTH_SHORT).show()
+        Log.d("member_sqlite", " ${member.id} ${member.name} insert성공")
         return true
     }
 
@@ -79,8 +71,6 @@ class DBHelper(
         } catch (e: SQLException) {
             Log.d("member_sqlite", " ${id} selectCheckID 실패 ")
             flag = false
-        }finally {
-            db.close()
         }
         return flag
     }
@@ -103,8 +93,6 @@ class DBHelper(
         } catch (e: SQLException) {
             Log.d("member_sqlite", " ${id} 중복")
             flag = false
-        }finally {
-            db.close()
         }
         return flag
     }
@@ -131,8 +119,6 @@ class DBHelper(
             }
         } catch (e: SQLException) {
             Log.d("member_sqlite", " ${id} selectCheckID 실패 ")
-        }finally {
-            db.close()
         }
         return member
     }
@@ -162,8 +148,6 @@ class DBHelper(
             }
         } catch (e: SQLException) {
             Log.d("member_sqlite", " selectAll 실패 ")
-        }finally {
-            db.close()
         }
         return dataList
     }
@@ -198,8 +182,6 @@ class DBHelper(
             } catch (e: SQLException) {
                 Log.d("member_sqlite", " ${member?.id} update 실패")
                 flag = false
-            }finally {
-                db.close()
             }
         }
         return true

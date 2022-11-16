@@ -1,16 +1,9 @@
 package com.example.member_sqlite
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.CursorAdapter
-import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.member_sqlite.databinding.ActivityListBinding
@@ -22,6 +15,7 @@ class ListActivity : AppCompatActivity() {
     var dataList = mutableListOf<Member>()
 
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListBinding.inflate(layoutInflater)
@@ -47,8 +41,25 @@ class ListActivity : AppCompatActivity() {
         binding.btnMainList.setOnClickListener {
             finish()
         }
+        binding.floatingActionButton.setOnClickListener {
+        val registerDialog = CustomDialogRegister(binding.root.context)
+            registerDialog.showDialog()
+        }
         dbHelper.close()
     }
+
+    fun refreshRecyclerViewAdd(member: Member): Boolean {
+        var flag = false
+        val dbHelper = DBHelper(applicationContext, "memberDB.db", null, 1)
+        dataList.add(member)
+        customAdapter.notifyDataSetChanged()
+        if (dbHelper.insert(member)) {
+            flag = true
+        }
+        dbHelper.close()
+        return flag
+    }
+
 
     fun refreshRecyclerViewDrop(member: Member, position: Int) {
         val dbHelper = DBHelper(applicationContext, "memberDB.db", null, 1)
@@ -58,12 +69,11 @@ class ListActivity : AppCompatActivity() {
         customAdapter.notifyItemRemoved(position)
         dbHelper.close()
     }
+
     fun refreshRecyclerViewUpdate(member: Member, position: Int) {
         val dbHelper = DBHelper(applicationContext, "memberDB.db", null, 1)
         Snackbar.make(binding.root, "${member.id}가 수정되었습니다.", Toast.LENGTH_SHORT).show()
-
-
-
+        dbHelper.update(member)
         customAdapter.notifyItemRemoved(position)
     }
 }

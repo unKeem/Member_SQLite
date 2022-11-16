@@ -35,27 +35,28 @@ class RegisterActivity : AppCompatActivity() {
                 phone.length == 0 || email.length == 0 || address.length == 0 || level.length == 0
             ) {
                 Toast.makeText(this, "모든 항목을 빠짐없이 입력해 주세요", Toast.LENGTH_SHORT).show()
-                flag = false
+                return@setOnClickListener
             }
             //password와 passwordCheck가 일치하는지 체크
             if (!password.equals(password_check)) {
                 Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-                flag = false
+                return@setOnClickListener
             }
             //아이디가 중복되는지
             if (dbHelper.selectCheckID(id)) {
                 Toast.makeText(this, "사용할수 없는 아이디 입니다.", Toast.LENGTH_SHORT).show()
-                flag = false
-            }else{
+                return@setOnClickListener
+            } else {
                 flag = true
             }
-            if (!dbHelper.insert(id, name, password, phone, email, address, level)) {
+            val member = Member(id, name, password, phone, email, address, level)
+            if (!(dbHelper.insert(member))) {
                 Toast.makeText(this, "회원가입 오류 발생.", Toast.LENGTH_SHORT).show()
             }
             if (flag != false) {
                 finish()
             }
-            dbHelper.close()
+
         }//btnRegSave event handler
 
         binding.btnRegBack.setOnClickListener {

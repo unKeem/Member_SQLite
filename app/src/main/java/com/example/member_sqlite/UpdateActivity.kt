@@ -29,13 +29,12 @@ class UpdateActivity : AppCompatActivity() {
                     binding.edtPhoneUpdate.setText(member?.phone)
                     binding.edtPwUpdate.setText(member?.password)
                     binding.edtLevelUpdate.setText(member?.level)
-                    Log.d("memberDB.db", "수정완료")
+                    Log.d("memberDB.db", "수정할 정보 가져옴")
                 } else {
                     flag = false
                     Toast.makeText(this, "해당 ID는 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
-            dbHelper.close()
         }
 
         //위에서 검색학 아이디의 정보(비밀번호 전화번호 직급)를 수정한다
@@ -60,7 +59,6 @@ class UpdateActivity : AppCompatActivity() {
             }else{
                 Toast.makeText(this, "수정할 정보를 입력하세요", Toast.LENGTH_SHORT).show()
             }
-            dbHelper.close()
         }
         binding.btnMainUpdate.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
