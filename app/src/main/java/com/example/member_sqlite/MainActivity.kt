@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             R.id.btn_displayMain -> {
+                DBHelper(applicationContext, "memberDB.db", null, 2)
+
             }
         }
     }

@@ -36,7 +36,9 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
-            R.id.btn_delete_table ->{}
+            R.id.btn_delete_table ->{
+
+            }
         }
     }
 }
